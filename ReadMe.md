@@ -6,16 +6,49 @@ The program is a test program, using the **OCR library** (gosseract) to detect a
 
 It's a HTTP server based on **GIN framework**, which uses **MongoDB** as Data Base. It has 2 HTTP interfaces:
 
-- **/image/detect** : detect all the letters from an image, and store the result  in DB.
+- **/image/detect** : detect all the letters from an image, and store the result  in DB. It supports 3 types of image input:
+  - **image_file**:  form file
+  - **image_url**: image download url
+  - **image_base64**: image base64 encode
 - **/image/list_result**: list all the detect result
 
 All the source codes are in the **./src** directory, which contains also all the libraries.  The compile result stays in the **./app**.
 
+## Interface description
 
+### /image/detect
+
+**Input**
+
+| field        | type   | necessary | description         |
+| ------------ | ------ | --------- | ------------------- |
+| image_file   | file   | false     | form file           |
+| image_url    | string | false     | image download url  |
+| image_base64 | string | false     | image base64 encode |
+
+**Json output**
+
+| field   | type     | description                                       |
+| ------- | -------- | ------------------------------------------------- |
+| res     | integer  | result code，0 is success，others are error codes |
+| content | []string | detect result                                     |
+
+### /image/list_result
+
+**Input**
+
+null
+
+**Json output**
+
+| field         | type     | description                                       |
+| ------------- | -------- | ------------------------------------------------- |
+| res           | integer  | result code，0 is success，others are error codes |
+| detect_result | []object | detect results                                    |
 
 ## Run steps (Ubuntu 16.04)
 
-### First, you need to install the dependencies by the following command:
+**First, you need to install the dependencies by the following command:**
 
 ```
 sudo apt-get update
@@ -23,13 +56,13 @@ sudo apt-get install -y libtesseract-dev libleptonica-dev
 sudo apt-get install -y tesseract-ocr-eng tesseract-ocr-deu tesseract-ocr-jpn
 ```
 
-### Then, install the mongodb:
+**Then, install the mongodb:**
 
 ```
 sudo apt-get install mongodb
 ```
 
-### Next, copy all the contains from the **./app** to your own directory, and change the configuration (config/config.yml):
+**Next, copy all the contains from the ./app to your own directory, and change the configuration (config/config.yml):**
 
 ```
 port: 8099
@@ -51,7 +84,9 @@ filePathRoot: ./files
 
 **filePathRoot**: the root directory of the image files and log files
 
-### Last step, just run it:
+
+
+**Last step, just run it:**
 
 ```
 ./ocr_test
