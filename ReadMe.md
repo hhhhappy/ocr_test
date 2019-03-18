@@ -9,7 +9,7 @@ It's a HTTP server based on **GIN framework**, which uses **MongoDB** as Data Ba
 - **/image/detect** : detect all the letters from an image, and store the result  in DB.
 - **/image/list_result**: list all the detect result
 
-All the source codes are in the **./source** directory, which contains also all the libraries.  The compile result stays in the **./app**.
+All the source codes are in the **./src** directory, which contains also all the libraries.  The compile result stays in the **./app**.
 
 
 
