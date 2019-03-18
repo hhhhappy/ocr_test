@@ -1,0 +1,12 @@
+port: 8099
+database:
+ dbname: db_ocr_test
+ #local#
+ url: mongodb://127.0.0.1:27017
+
+#Server mode#
+#Debug mode: "debug"#
+#Release mode: "release"#
+serverMode: debug
+
+filePathRoot: ./files
