@@ -28,10 +28,27 @@ All the source codes are in the **./src** directory, which contains also all the
 
 **Json output**
 
+***Correct***: 
+
+HTTP code : 200
+
+Body:
+
 | field   | type     | description                                       |
 | ------- | -------- | ------------------------------------------------- |
 | res     | integer  | result code，0 is success，others are error codes |
 | content | []string | detect result                                     |
+
+***Error***: 
+
+HTTP code : other code
+
+Body:
+
+| field | type    | description   |
+| ----- | ------- | ------------- |
+| res   | integer | error code    |
+| msg   | string  | error message |
 
 ### /image/list_result
 
@@ -41,10 +58,27 @@ null
 
 **Json output**
 
+***Correct***: 
+
+HTTP code : 200
+
+Body:
+
 | field         | type     | description                                       |
 | ------------- | -------- | ------------------------------------------------- |
 | res           | integer  | result code，0 is success，others are error codes |
 | detect_result | []object | detect results                                    |
+
+***Error***: 
+
+HTTP code : other code
+
+Body:
+
+| field | type    | description   |
+| ----- | ------- | ------------- |
+| res   | integer | error code    |
+| msg   | string  | error message |
 
 ## Run steps (Ubuntu 16.04)
 
