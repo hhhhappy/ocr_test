@@ -2,15 +2,16 @@ package action
 
 import (
 	"github.com/gin-gonic/gin"
-	"net/http"
 	"ocr_test/defines"
 	"ocr_test/manager/logManager"
 	"strconv"
 )
 
 func MakeErrorResponce(context *gin.Context, code int) {
-	context.JSON(http.StatusOK, gin.H{
-		"msg": defines.Translate(code),
+	errorInfo := defines.GetErrorInfo(code)
+
+	context.JSON(errorInfo.StatusCode, gin.H{
+		"msg": errorInfo.Msg,
 		"res": code,
 	})
 }
